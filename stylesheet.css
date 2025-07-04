@@ -200,11 +200,34 @@ body.menu-open {
     z-index: 1;
 }
 
+.loading-logo-img {
+    width: 220px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    animation: logoFadeIn 1.5s ease;
+    filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.5));
+}
+
+@keyframes logoFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
 .loading-logo {
     font-size: 3.5rem;
     color: #ec4899;
     margin-bottom: 1.5rem;
-    animation: fadeInUp 1s ease;
+    animation: fadeInUp 1s ease 0.3s both;
     letter-spacing: 2px;
     font-weight: 800;
 }
@@ -263,6 +286,7 @@ body.menu-open {
     letter-spacing: 1px;
     display: flex;
     align-items: center;
+    gap: 0.5rem;
     transition: color 0.3s ease;
 }
 
@@ -270,9 +294,11 @@ body.menu-open {
     color: #f59e0b;
 }
 
+
+
 .logo-img {
-    height: 40px;
-    width: auto;
+    height: 70px;
+    width: 70px;
     transition: transform 0.3s ease;
 }
 
@@ -549,6 +575,16 @@ body.menu-open {
 .portfolio {
     padding: 7rem 0;
     background: #fdf2f8;
+    min-height: 100vh;
+}
+
+/* Portfolio Page Specific Styles */
+body:has(.portfolio) .portfolio {
+    padding-top: 10rem;
+}
+
+.portfolio .section-title {
+    margin-bottom: 3rem;
 }
 
 .portfolio-tabs {
@@ -602,35 +638,38 @@ body.menu-open {
 /* Unified Gallery View */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
     margin-top: 2rem;
     max-width: 100%;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(236, 72, 153, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .portfolio-item {
     position: relative;
-    border-radius: 8px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #fff;
-    aspect-ratio: 1;
+    aspect-ratio: 4/5;
 }
 
 .portfolio-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.25), 0 0 0 2px rgba(245, 158, 11, 0.3);
     z-index: 2;
 }
 
 .portfolio-item.featured {
     grid-column: span 2;
-    aspect-ratio: 2/1;
+    aspect-ratio: 16/9;
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(236, 72, 153, 0.2);
 }
 
 .portfolio-image {
@@ -682,7 +721,7 @@ body.menu-open {
 /* Awards Section */
 .awards {
     padding: 7rem 0;
-    background: #ffffff;
+    background: linear-gradient(135deg, #fdf2f8 0%, #fff 50%, #fef3c7 100%);
     color: rgb(0, 0, 0);
     overflow: hidden;
 }

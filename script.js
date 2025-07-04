@@ -1,15 +1,26 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Loading Screen
+    // Loading Screen - only show on first visit
     const loadingScreen = document.getElementById('loadingScreen');
     
-    // Hide loading screen after 2 seconds
-    setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
+    // Check if this is the first visit in this session
+    const hasVisited = sessionStorage.getItem('hasVisited');
+    
+    if (!hasVisited && loadingScreen) {
+        // Mark as visited for this session
+        sessionStorage.setItem('hasVisited', 'true');
+        
+        // Hide loading screen after 2 seconds
         setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
-    }, 2000);
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, 2000);
+    } else if (loadingScreen) {
+        // Hide immediately if already visited
+        loadingScreen.style.display = 'none';
+    }
     
     // Navigation
     const navbar = document.getElementById('navbar');
